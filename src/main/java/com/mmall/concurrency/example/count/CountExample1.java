@@ -52,6 +52,19 @@ public class CountExample1 {
 
     private static void add(){
         //先增加再获取值
+        // getAndAddInt->getAndAddInt->compareAndSwapInt
+        /**
+         * public final int getAndAddInt(Object var1, long var2, int var4) {
+         *         int var5;
+         *         do {
+         *             var5 = this.getIntVolatile(var1, var2);
+         *             //当前的值等于期望的值才执行（var5 + var4）操作
+         *             //CAS操作（当前对象的值等于底层的值才执行对应的操作）
+         *         } while(!this.compareAndSwapInt(var1, var2, var5, var5 + var4));
+         *
+         *         return var5;
+         *     }
+         */
         count.incrementAndGet();
         //先获取值再增加
 //        count.getAndIncrement();
